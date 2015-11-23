@@ -1,0 +1,20 @@
+------------------------------------------------------------------------------------------
+This repository contains Ravel FTN package legacy source code (for Mac OS Classic)
+------------------------------------------------------------------------------------------
+WHY:
+
+Just for historical purposes
+------------------------------------------------------------------------------------------
+HOW TO BUILD:
+
+I don't remember, just try to use Metrowerks CodeWarrior X with *.µ project files
+
+Though, /System/Library/CoreServices/FixupResourceForks is your friend to normalize
+splitted resource forks in this repository (see man FixupResourceForks for more info)
+------------------------------------------------------------------------------------------
+BINARIES:
+
+Yeah, I've found old hqx file which supposedly contains latest Ravel 2.0b9 distribution
+files set. It's in Download section of repository
+------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
