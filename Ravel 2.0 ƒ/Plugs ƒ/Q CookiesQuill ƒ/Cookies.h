@@ -1,0 +1,1 @@
+//extern	Handle	txtCook;//extern	Handle	hshCook;//extern	long	numCook;void ReadCookies (void);void dealCookie (Handle hndl);

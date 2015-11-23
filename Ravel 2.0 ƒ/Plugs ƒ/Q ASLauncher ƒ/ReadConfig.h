@@ -1,0 +1,1 @@
+//	ReadConfig.hshort	ReadConfig(StringPtr cfgname);typedef struct lex_data {	struct lex_data	*next;	long			mode;	char			menuname[256];	char			cmpname[256];	char			exename[256];	long			flags;} lex_data;extern	lex_data	*gLexData;short		count_lex_data(lex_data *ld);void		free_lex_data(lex_data *ld);lex_data	*find_lex_data(lex_data *ld, char *str);

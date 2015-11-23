@@ -1,0 +1,1 @@
+#ifndef LITE#ifdef PROTECTEDtypedef struct _key {	unsigned long	crc;	unsigned long	oldcrc;	unsigned short	cs;	unsigned short	oldcs;	Str255			regName;	addr			regAddr;		Handle			Invalidater;	} keyRecord;extern	keyRecord	keys;extern	Handle		keyHandle;Boolean CheckKey (void);#endif#endif

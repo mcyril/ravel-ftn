@@ -1,0 +1,1 @@
+void WNodeEventProcessor (EventRecord *event, struct _window *dialogInfo, long info);void WNodeDialogProcessor (EventRecord *event, struct _window *dialogInfo, long info);

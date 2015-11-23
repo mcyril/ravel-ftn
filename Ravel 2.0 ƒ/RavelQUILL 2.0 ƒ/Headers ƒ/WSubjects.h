@@ -1,0 +1,1 @@
+Boolean trackUnread (long i, long *lr, long *nm);void WSubjectsEventProcessor (EventRecord *event, struct _window *dialogInfo, long info);void WSubjectsDialogProcessor (EventRecord *event, struct _window *dialogInfo, long info);

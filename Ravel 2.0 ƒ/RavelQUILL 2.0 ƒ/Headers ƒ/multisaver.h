@@ -1,0 +1,1 @@
+void SaveMessagesToFile (long area, long current_message, short mode);

@@ -1,0 +1,331 @@
+ZModem с чатом.
+------------------------------------------------------------------------------
+
+Summury. Со слов Andy Elkin, 2:5030/15 (автор), Jury Fradkin, 2:5030/339.
+         Реализации Alex Denisenko, 2:465/69 (опубликовано в RU.ARGUS)
+         Из личных наблюдений и реализации в RavelMAIL (примеры)
+         Собрал Cyril Moorzin, 2:5030/700
+
+------------------------------------------------------------------------------
+
+  Для взаимопонимания мейлеры должны знать, что они оба исп. эту 
+модификацию.
+
+  В EMSI t-mail исп. поле CHT для сигнализации сего факта. Этот флаг 
+используется и для Janus, поэтому если t-mail получает ответный флаг CHT,
+он ожидает совместимости и в Janus. 
+
+  Чат активизируется символом 5 (t-mail их посылает несколько в нескольких
+первых чатовых пакетах). Если чат уже активизирован, то символ 5 игнорируется.
+Этот символ посылает инициатор чата, после этого считается, что чат открыт и
+символ 5 во встречном потоке не ожидается. Ответчик чата так же не должен слать
+символ 5 в ответном потоке ибо это может пpивести к самовозбуждению чата в ситуации
+быстpого откpытия и закpытия чата.
+
+  Все непечатные символы игнорируются. Символ ZPAD ('*') заменяется на 
+ascii 248 перед посылкой и наоборот при приеме.
+  Символ новой строки передается как ascii 10 ('\n').
+  Звонок передается как ascii 7
+  BackSpace как ascii 8  
+
+  Чатовый поток посылающего файл (zsend) вставляется в конец блоков данных 
+после ZDLE перед CRC. Чатовый "пакет" имеет вид:
+
+<данные><DLE><TYPE>[<чатовая строка>]<0><CRC>
+
+<чатовая строка> - набор символов для передачи (кроме 0)
+Если нечего слать, то <чатовая строка> пропускается.
+
+static void ZS_SendData (
+      register unsigned char * buf,
+      short length,
+      unsigned short frameend,
+      short ignorechat)
+{
+  register unsigned short crc;
+
+
+  if (Crc32t)
+    ZS_32SendData (buf, length, frameend, ignorechat);
+  else
+  {
+    crc = 0;
+    for (; --length >= 0;)
+    {
+      ZS_SendByte (*buf);
+      crc = Z_UpdateCRC (((unsigned short) (*buf++)), crc);
+    }
+
+    BUFFER_BYTE (ZDLE, z_slice);
+    BUFFER_BYTE ((unsigned char) frameend, z_slice);
+
+    if (tmail_chat)
+    {
+//    conditions by Alex Denisenko
+//    if ((frameend == ZCRCG || frameend == ZCRCW) && !ignorechat)
+      if (!ignorechat)
+      {
+        z_devsend_c (true);     // посылка чатового потока (zsend)
+      }
+
+      BUFFER_BYTE (0, z_slice);
+    }
+
+    crc = Z_UpdateCRC (frameend, crc);
+
+    ZS_SendByte ((unsigned char) (crc >> 8));
+    ZS_SendByte ((unsigned char) crc);
+
+    UNBUFFER_BYTES (z_slice);
+  }
+
+  if (frameend == ZCRCW)
+  {
+    SENDBYTE (XON, z_slice);
+    while (CARRIER && !OUT_EMPTY ())
+      z_slice ();
+    
+    if (!CARRIER)
+      CLEAR_OUTBOUND ();
+  }
+}
+
+Вызов (только при посылке блоков данных - ZDATA):
+
+  ZS_SendData (Txbuf, blen, frameend, false);
+
+В остальные пакеты данных (например, после ZFILE) чатовая строка не пишется.
+
+  ZS_SendBinaryHeader (ZFILE, (unsigned char *) Txhdr);
+  ZS_SendData (Txbuf, blen, ZCRCW, true);
+
+Встречный поток чата (zreceive) просто stream. Он не может быть внутри 
+header-ов (так же не посылается от момента получения ZEOF до пpихода ZDATA,
+в RavelMAIL не соблюдается).
+
+short Z_GetZDL ()
+{
+  register short c, rr;
+
+  if ((c = Z_GetByte (Rxtimeout)) != ZDLE)
+    return c;
+
+  switch (c = Z_GetByte (Rxtimeout))
+  {
+  case CAN:
+
+    return ((c = Z_GetByte (Rxtimeout)) < 0) ? c :
+      ((c == CAN) && ((c = Z_GetByte (Rxtimeout)) < 0)) ? c :
+      ((c == CAN) && ((c = Z_GetByte (Rxtimeout)) < 0)) ? c : (GOTCAN);
+
+  case ZCRCE:
+  case ZCRCG:
+  case ZCRCQ:
+  case ZCRCW:
+
+    if (tmail_chat)
+    {
+      do {
+      
+        rr = Z_GetByte (Rxtimeout);
+        z_devrecv_c (rr, false);  // прием чатового потока (zsend)
+        
+      } while (rr);
+      
+      z_devsend_c (false);      // посылка встречного потока (zreceive)
+    }
+
+    return (c | GOTOR);
+
+  case ZRUB0:
+
+    return 0x7F;
+
+  case ZRUB1:
+
+    return 0xFF;
+
+  default:
+
+    return (c < 0) ? c :
+      ((c & 0x60) == 0x40) ? (c ^ 0x40) : ERROR;
+
+  }
+}
+
+Прием встречного потока чата (zreceive). После управляющих хедеров могут
+следовать <CR>, <LF> и <XON> (так же с взведенным старшим битом). Их необходимо
+пропускать, в противном случае символ <LF> будет вызывать мгновенную "прокрутку"
+окна чата и невозможность что-либо в нем прочесть. Реализация "выкусывания"
+"лишних" символов полностью на совести автора :)
+
+В данном примере реализация "выкусывания" далека от совершенства, т.к. после 
+управляющих хедеров будут пропускаться не только служебные <CR>, <LF> и <XON>, но и 
+сразу же следующие за ними <CR>, <LF> и <XON> несущие информационную нагрузку
+(вероятность такого попадания достаточно низка, но...).
+
+static short ZS_SendFileData (short wazoo)
+{
+  register short  c;
+  short     bypass;
+
+
+//  ....................
+
+
+  do
+  {
+
+//  ....................
+    
+    bypass = false;
+    
+    while (CHAR_AVAIL ())
+    {
+      switch (c = MODEM_IN ())
+      {
+//  ....................
+        
+      default:
+      
+        if (!CARRIER)
+          goto oops;
+        
+        if (tmail_chat)
+        {
+          switch (c)
+          {
+          case 0x0A:
+          case 0x0A|0x80:
+          case 0x0D:
+          case 0x0D|0x80:
+          case XON:
+          case XON|0x80:
+          
+            if (!bypass)
+              break;
+          
+          default:
+          
+            bypass = true;
+            z_devrecv_c (c, true);  //  прием встречного потока (zreceive)
+            break;
+          }
+        }
+        
+        break;
+      }
+    }
+  }
+  while (e == ZCRCG);
+
+//  ....................
+}
+
+
+Служебные функции:
+
+
+static Boolean z_devfree (void)
+{
+  if (chattxstate || !tmail_chat)
+    return (false);           /* busy or not allowed       */
+  else
+    return (true);            /* allowed to send a new pkt */
+}
+
+static Boolean z_devsend (unsigned char *data, unsigned short len)
+{
+  char    *p, c;
+  
+  
+  if (!data || !len || !z_devfree ())
+    return (false);
+
+  chattxbuf = (unsigned char *)data;
+  chattxbuf[(len > CHATLEN) ? CHATLEN : len] = 0;
+  chattxstate = CHAT_DATA;
+
+  return (true);
+}
+
+
+void z_devsend_c (Boolean buffering)
+{
+  char  c, *p;
+  
+
+  if (chattxstate)
+  {
+    p = (char *) chattxbuf;
+    
+    while (c = *p)
+    {
+      switch (*p)
+      {
+      case ZPAD: c = 248; break;
+      }
+      
+      if (buffering)
+        BUFFER_BYTE ((unsigned char) c, z_slice);
+      else
+        SENDBYTE ((unsigned char) c, z_slice);
+      
+      p++;
+    }
+
+    chattxstate = CHAT_DONE;
+  }
+}
+
+void z_devrecv_c (char c, Boolean flushed)
+{
+  char    *p;
+
+  
+  if (!InitedChat)
+  {
+    if (c == 5)
+    {
+      InitedChat = true;
+      p = " * Hello there! Bell me if I'm away...\n";
+      z_devsend ((unsigned char *) p,(short) strlen(p));
+    }
+  }
+  else
+  {
+    inchatbuf[inchatfill++] = c;
+    if (c)
+    {
+      if (inchatfill > 255 || flushed)
+      {
+        inchatbuf[inchatfill] = 0;
+        goto flush;
+      }
+    }
+    else
+    {
+    flush:
+      
+      if (*inchatbuf)
+      {
+        p = (char *) inchatbuf;
+        
+        while (*p)
+        {
+          switch (*p)
+          {
+          case 248: *p = ZPAD; break;
+          case 0x0D: *p = 10; break;
+          }
+          
+          p++;
+        }
+        
+        win_puts (remote_win, (unsigned char *) inchatbuf);
+      }
+
+      inchatfill = 0;
+    }
+  }
+}

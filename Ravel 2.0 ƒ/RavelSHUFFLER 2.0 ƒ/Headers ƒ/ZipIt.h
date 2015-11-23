@@ -1,0 +1,1 @@
+/*Boolean MakeCompression ( StringPtr, FSSpecPtr );Boolean MakeNewCompression ( StringPtr, FSSpecPtr );Boolean MakeDecompression ( FSSpecPtr, FSSpecPtr );void KillZipProcess (void);*/OSErr FindAProcess (OSType typeToFind, OSType creatorToFind,			ProcessSerialNumberPtr processSN);

@@ -1,0 +1,1 @@
+in_outboundPtr LookForOutbound (ADDR *oper);Boolean PathForOutbound (ADDR *oper, StringPtr flo);Boolean do_FLOfile (ADDR *, short (*EMSI_callback)(StringPtr) );void touch_arcmail_suffix (ADDR *adr, StringPtr filename);

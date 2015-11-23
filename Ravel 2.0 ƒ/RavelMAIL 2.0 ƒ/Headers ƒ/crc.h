@@ -1,0 +1,1 @@
+unsigned short crc_block(char *, long );extern	unsigned long	cr3tab[];extern	unsigned short	crctab[];#define updcrc(cp, crc) ( crctab[((crc >> 8) & 255) ^ cp] ^ (crc << 8))#define xcrc(crc,cp) ( crctab[((crc >> 8) & 255) ^ cp] ^ (crc << 8))

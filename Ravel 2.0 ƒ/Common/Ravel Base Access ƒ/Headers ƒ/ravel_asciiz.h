@@ -1,0 +1,1 @@
+//	ravel_asciiz.hBoolean get_ASCIIZ (short fromfile, char *dest, long limit);Boolean get_msg_text ( short fromfile, Handle dest );Boolean get_pkt_text ( short fromfile, Handle dest );

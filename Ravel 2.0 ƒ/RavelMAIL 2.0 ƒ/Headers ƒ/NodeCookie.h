@@ -1,0 +1,1 @@
+void	WhoIs (in_outboundPtr);Boolean	NodeBrowse (addr *result);

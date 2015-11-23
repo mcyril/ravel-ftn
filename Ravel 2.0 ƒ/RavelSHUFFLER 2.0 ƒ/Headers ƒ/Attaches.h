@@ -1,0 +1,1 @@
+void	Resolver (long process);

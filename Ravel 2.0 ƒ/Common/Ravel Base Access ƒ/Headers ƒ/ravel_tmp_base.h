@@ -1,0 +1,1 @@
+short	tmpbase_init (void);Boolean	tmpbase_open (void);short	tmpbase_add (pktmsg *m);void	tmpbase_close (void);

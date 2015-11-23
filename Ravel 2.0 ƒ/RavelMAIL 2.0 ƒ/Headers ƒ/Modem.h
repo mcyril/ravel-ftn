@@ -1,0 +1,1 @@
+void	mdm_cmd_char (short);void	mdm_cmd_string (char *, short );short	modem_response (short);short	dial_modem (char *);void	send_break (short);void	hang_up (void);void	mdm_hangup (char *);void	mdm_init (char *);void	mdm_flush_diagnosis (char *modem_diagnosis);

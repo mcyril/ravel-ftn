@@ -1,0 +1,1 @@
+typedef struct _statistic {	short	Archives;	short	Packets;		short	EchoMesages;	short	PassThrough;	short	NetMailMesages;	short	NetMailDirected;	short	FileRequests;	short	FileAttaches;	short	AutoCreated;} statistic;extern	statistic	Stat;void ZeroStat (void);void OutStatTossed (void);void OutStatScanned (void);

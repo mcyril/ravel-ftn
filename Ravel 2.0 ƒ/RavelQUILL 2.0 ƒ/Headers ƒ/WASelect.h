@@ -1,0 +1,1 @@
+void WASelectEventProcessor (EventRecord *event, struct _window *dialogInfo, long info);void WASelectDialogProcessor (EventRecord *event, struct _window *dialogInfo, long info);

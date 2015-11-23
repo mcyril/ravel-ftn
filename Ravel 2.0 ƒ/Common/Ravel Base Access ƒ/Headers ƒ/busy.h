@@ -1,0 +1,1 @@
+Boolean	get_flo_pathname (addr *oper, StringPtr base, StringPtr flo);Boolean	bsy_check (addr *oper, StringPtr base);Boolean	bsy_raise (addr *oper, StringPtr base);void	bsy_clear (addr *oper, StringPtr base);Boolean	base_bsy_check (void);void	base_bsy_raise (void);void	base_bsy_clear (void);

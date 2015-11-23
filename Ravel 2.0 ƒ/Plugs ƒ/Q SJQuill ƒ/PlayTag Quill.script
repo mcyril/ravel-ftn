@@ -1,0 +1,1 @@
+-- this script can be used with Sound Jam MP and iTunes 2tell application "%#s"	set thistrack to current track	set thisartistname to artist of thistrack	set thisalbumname to album of thistrack	set thistrackname to name of thistrackend tellreturn thisartistname & " ú " & thisalbumname & " ú " & thistrackname

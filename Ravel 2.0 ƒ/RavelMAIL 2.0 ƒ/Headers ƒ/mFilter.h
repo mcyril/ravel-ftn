@@ -1,0 +1,1 @@
+pascal Boolean ModalFilterProc ( DialogPtr, EventRecord *, short * );pascal Boolean ModalPollFilterProc ( DialogPtr, EventRecord *, short * );pascal Boolean ModalEditPollFilterProc ( DialogPtr, EventRecord *, short * );pascal Boolean ModalClearFilterProc ( DialogPtr, EventRecord *, short * );

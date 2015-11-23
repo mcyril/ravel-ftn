@@ -1,0 +1,1 @@
+void	Session (Boolean);short	SendBanner (char *);

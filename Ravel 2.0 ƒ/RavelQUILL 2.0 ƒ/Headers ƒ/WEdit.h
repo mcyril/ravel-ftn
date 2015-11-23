@@ -1,0 +1,1 @@
+void WEditEventProcessor (EventRecord *event, struct _window *dialogInfo, long info);void WEditDialogProcessor (EventRecord *event, struct _window *dialogInfo, long info);

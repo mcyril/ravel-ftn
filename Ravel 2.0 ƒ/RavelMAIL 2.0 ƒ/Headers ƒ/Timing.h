@@ -1,0 +1,1 @@
+void	timer ( long );long	timerset ( long );Boolean	timeup ( long );void	time_release ( void );void	big_pause (short);

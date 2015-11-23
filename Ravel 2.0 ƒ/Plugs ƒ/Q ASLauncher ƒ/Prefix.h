@@ -1,0 +1,1 @@
+#include <MacHeaders.h>#define	FIDOTECH_ATOMS#define	PYTRACK_STANDALONE	1

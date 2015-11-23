@@ -1,0 +1,1 @@
+#include "clasp.h"void *Clasp_init(int init){}void Clasp_deinit(void *context){}short Clasp(void *context, char *path, int state){}

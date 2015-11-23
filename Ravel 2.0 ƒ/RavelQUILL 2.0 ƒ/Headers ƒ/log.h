@@ -1,0 +1,1 @@
+#define	lgNOPE	' '#define	lgALRT	'!'#define	lgDONT	'?'#define	lgATTN	'*'void openlog ( void );void putlog ( char status, char *loginfo, ... );void closelog ( void );void updtlog (void);

@@ -1,0 +1,1 @@
+#if !TARGET_API_MAC_CARBONextern	THPrint	printRecordH;#endif#ifndef LITEvoid	DoPrintOneMessage (pktmsg *m);short	DoPrintMessages_Init (void);void	DoPrintMessages_Print (pktmsg *m);void	DoPrintMessages_Close (void);#endif

@@ -1,0 +1,1 @@
+void WAddresseeEventProcessor (EventRecord *event, struct _window *dialogInfo, long info);void WAddresseeDialogProcessor (EventRecord *event, struct _window *dialogInfo, long info);

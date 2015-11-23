@@ -1,0 +1,1 @@
+void CallSndPlay (short mySndID);void CallASndPlay (short mySndID);void InitSoundLib (void);void NeedFreeChannel (void);

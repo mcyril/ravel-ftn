@@ -1,0 +1,1 @@
+void	pStrCopy ( StringPtr, StringPtr );void	pStrConc ( StringPtr, StringPtr, StringPtr );//void	pStrCut ( StringPtr, short, short, StringPtr );short	pcStrEqu ( StringPtr, char * );short	pStrComp ( StringPtr, StringPtr );//void	mymemcpy ( unsigned char *, unsigned char *, long );StringPtr GetStr ( Handle phones, short Numb );

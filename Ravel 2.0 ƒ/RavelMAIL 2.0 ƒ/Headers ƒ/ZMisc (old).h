@@ -1,0 +1,1 @@
+short	Z_GetByte (short);

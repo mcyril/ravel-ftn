@@ -1,0 +1,1 @@
+void default_button (DialogPtr, short);void FalseClick (DialogPtr theDialog, short theItem);

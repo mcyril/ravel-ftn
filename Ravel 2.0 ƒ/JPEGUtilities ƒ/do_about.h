@@ -1,0 +1,1 @@
+//	do_about.hvoid	do_splash (DialogPtr *doom);void	do_about (short);

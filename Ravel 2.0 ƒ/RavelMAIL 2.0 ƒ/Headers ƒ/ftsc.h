@@ -1,0 +1,1 @@
+void	FTSC_sender (short wz);short	FTSC_receiver (short wz);extern	short	first_block;extern	short	who_is_he;

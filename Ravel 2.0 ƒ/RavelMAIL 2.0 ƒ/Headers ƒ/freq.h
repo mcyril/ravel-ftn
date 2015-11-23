@@ -1,0 +1,1 @@
+Boolean parseFreqAliasFolder (StringPtr freq, StringPtr found);void appendrequests (char *textarray);short respond_to_file_requests (short fsent, short (*EMSI_callback)(StringPtr));typedef struct _freq {	struct _freq	*next;	Str31			freqname;	Str15			freqpwd;	Boolean			sumsent;	Boolean			wassent;} freq, *pfreq;extern pfreq	freqchain;

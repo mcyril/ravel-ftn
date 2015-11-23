@@ -1,0 +1,1 @@
+void	Toss ( void );void	ScanBundles ( StringPtr );Boolean	ProcessArchive ( StringPtr, short );void	ScanPackets ( StringPtr );void	ProcessPacket ( StringPtr, short );void	ResolveMessage ( pktmsg *, addr *, Boolean );void	NetPack (void);

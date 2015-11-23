@@ -1,0 +1,1 @@
+Boolean	GetASCIIZ ( short, char *, short );Boolean	GetMSGText ( short, Handle );

@@ -1,0 +1,1 @@
+//	clasp.h#ifndef	_H_CLASP#define	_H_CLASP#define	CL_WS_LOCAL		0#define	CL_WS_DYNAMIC	1#define	CL_SENDBATCH	0#define	CL_ENDBATCH		1#define	CL_ENDSESSION	2void	*Clasp_init(int init);void	Clasp_deinit(void *context);short	Clasp(void *context, char *path, int state);#endif

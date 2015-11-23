@@ -1,0 +1,1 @@
+OSErr FindAProcess (OSType typeToFind, OSType creatorToFind,			ProcessSerialNumberPtr processSN);void doCommandForSHUFFLER (char *cmd);Boolean doCheckOperating (void);Boolean ApplicationLaunch ( StringPtr ApplPathName );

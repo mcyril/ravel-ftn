@@ -1,0 +1,1 @@
+void CreateFoldersChain (StringPtr base, pktmsg *m, addr *via, char *whatstore, char *resultpath, Boolean kill);void FlavorMessage (pktmsg *, addr *, addr *, Boolean);

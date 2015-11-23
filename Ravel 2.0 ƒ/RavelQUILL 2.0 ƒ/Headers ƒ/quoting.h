@@ -1,0 +1,1 @@
+void prepareQuoting (char *body, Handle *quoted, char *fromname);Boolean hasInitials ( char *t, short *qstart, short *qend );short quotingnest (char *t, short qstart, short qend);

@@ -1,0 +1,1 @@
+void PathNameFromDirID ( long dirID, short vRefNum, StringPtr fullPathName );void PathNameFromWD ( long vRefNum, StringPtr pathName );

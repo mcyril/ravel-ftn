@@ -1,0 +1,1 @@
+short	fndtoken (char **tt, char *from);void	pushtojail ( char **storage, char **from );void	pushtoeoln ( char **storage, char **from );void	passtoeoln ( char **from );void	ReadTemplates (StringPtr prefname);

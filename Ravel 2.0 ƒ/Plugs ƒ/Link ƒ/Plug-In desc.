@@ -1,0 +1,1 @@
+	Plug-In specification	~~~~~~~~~~~~~~~~~~~~~Name:			"Linker"Qualified:		RavelSHUFFLER Plug-InFunction:		LINK command after posting new messages in baseRequired:		-Configuration:	-Source code:	availableNOTE. It intercepts "storing in base" events duringperforming TOSS command and starts LINK if there was ones.Well, you see that this plug will slow down your fido-life.

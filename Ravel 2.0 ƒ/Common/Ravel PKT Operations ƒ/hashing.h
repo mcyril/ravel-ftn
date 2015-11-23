@@ -1,0 +1,1 @@
+void	crcinit (void);long	hash (register char *name, register int size);

@@ -1,0 +1,1 @@
+void ExportEchoes ( pktmsg *, addr * );void ExportEchoesOnlyTo ( pktmsg *m, addr *from, addr *to );

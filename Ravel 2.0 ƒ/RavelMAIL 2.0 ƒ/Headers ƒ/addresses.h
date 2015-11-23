@@ -1,0 +1,1 @@
+short	parse_address (char *, ADDR * );short	find_address (char *, ADDR * );Boolean cmp2addrs ( addr *my1, addr *my2 );Boolean cmp2addrs1 ( addr *my1, ADDR *my2 );Boolean cmp2addrs2 ( ADDR *my1, ADDR *my2 );

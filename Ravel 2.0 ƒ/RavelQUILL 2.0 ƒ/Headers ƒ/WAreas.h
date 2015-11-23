@@ -1,0 +1,1 @@
+void WAreasEventProcessor (EventRecord *event, struct _window *dialogInfo, long info);void WAreasDialogProcessor (EventRecord *event, struct _window *dialogInfo, long info);

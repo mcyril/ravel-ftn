@@ -1,0 +1,1 @@
+	Plug-In specification	~~~~~~~~~~~~~~~~~~~~~Name:			"PlayTag Quill"Qualified:		RavelQUILL Plug-InFunction:		Inserts tag-line in the new messageRequired:		PowerPC, Apple Script installedConfiguration:	config file and script fileSource code:	unavailableNOTE: the standard purpose of this plug-in is the insertionof the artist/album/name of the currently playing music.

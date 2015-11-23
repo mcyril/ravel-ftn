@@ -1,0 +1,1 @@
+#include "state.h"short state_machine (STATEP machine, void *passed_struct, short start_state){		short	cur_state;	cur_state = (*(machine[0].state_func)) (passed_struct, start_state);	while (cur_state > 0)	{		cur_state = (*(machine[cur_state].state_func)) (passed_struct);	}	cur_state = (*(machine[1].state_func)) (passed_struct, cur_state);	return (cur_state);}

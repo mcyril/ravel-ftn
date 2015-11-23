@@ -1,0 +1,1 @@
+short strcasecmp ( char *s1, char *s2 );short strncasecmp ( char *s1, char *s2, short n );

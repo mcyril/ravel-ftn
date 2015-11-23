@@ -1,0 +1,1 @@
+void DecodeMessagesStream (long area, long current_message, short mode);

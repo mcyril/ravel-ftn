@@ -1,0 +1,1 @@
+short	LookForAreaNumber ( char * );Boolean	cmp2addrs ( addr *, addr * );//Boolean	addrInmask ( addr *, addr * );Boolean IsItMyAddr ( addr * );addr	*FindRouteTo ( addr * );short	FindRouteToN ( addr * );
