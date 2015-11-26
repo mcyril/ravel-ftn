@@ -1,3 +1,5 @@
+Ravel FTN
+Copyright (c) 1996-2006 Cyril Murzin
 ------------------------------------------------------------------------------------------
 This repository contains Ravel FTN package legacy source code (for Mac OS Classic)
 ------------------------------------------------------------------------------------------
@@ -15,7 +17,7 @@ splitted resource forks in this repository (see man FixupResourceForks for more 
 BINARIES:
 
 Yeah, I've found old hqx file which supposedly contains latest Ravel 2.0b9 distribution
-files set. It's in Download section of repository
+files set. It's in Download section of repository at https://bitbucket.org/ravel/ravel-ftn
 ------------------------------------------------------------------------------------------
 SOMETHING MISSING?
 
