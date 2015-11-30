@@ -1,0 +1,1 @@
+static long$abbrev$_hash(self)	$abbrev$object *self;{	/* XXXX Return a hash of self (or -1) */}

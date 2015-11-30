@@ -1,0 +1,1 @@
+//	¥	py_ftnaddrlist.h#ifndef	_FTNADDRLIST_H#define	_FTNADDRLIST_H#include "py_ftnaddr.h"#ifdef __cplusplusextern "C" {#endiftypedef struct{	PyObject_HEAD	PyFtnAddrObject *a;	} PyFtnAddrListObject;extern	DL_IMPORT(PyTypeObject)	PyFtnAddrList_Type;extern	DL_EXPORT(PyObject *)	initftnaddrlist(void);#ifdef __cplusplus}#endif#endif

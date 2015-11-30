@@ -1,0 +1,1 @@
+types=[	'CGAffineTransform',	'CGContextRef',	'CGLineCap',	'CGLineJoin',	'CGPathDrawingMode',	'CGPoint',	'CGRect',	'CGTextDrawingMode',	'CGTextEncoding',	'InBuffer',	'char_ptr',	'float',	'int',	'void',]missing=0for t in types:	try:		tt = eval(t)	except NameError:		print "** Missing type:", t		missing = 1if missing: raise "Missing Types"

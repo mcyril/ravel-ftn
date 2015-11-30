@@ -1,0 +1,1 @@
+[EditorWindow]font-name= courierfont-size= 10

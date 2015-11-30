@@ -1,0 +1,1 @@
+import macfsfss, ok = macfs.GetDirectory()if ok:	import W	W.FrontWindowInsert('"%s"' % fss.as_pathname())

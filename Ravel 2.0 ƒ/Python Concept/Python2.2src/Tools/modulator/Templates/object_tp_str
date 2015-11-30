@@ -1,0 +1,1 @@
+static PyObject *$abbrev$_str(self)	$abbrev$object *self;{	PyObject *s;	/* XXXX Add code here to put self into s */	return s;}

@@ -1,0 +1,1 @@
+//	¥	py_plugparser_tkn.h#ifndef	_PY_PLUGPARSERTKN_H#define	_PY_PLUGPARSERTKN_H#include "PyPlug.h"typedef struct{	PyObject_HEAD		long	token;	long	klass;	char	tokenname[256];	} PyParserTokenObject;extern		DL_IMPORT(PyTypeObject)	PyParserToken_Type;PyObject	*PyParsedToken_New(long token, long klass, char *name);#endif

@@ -1,0 +1,1 @@
+//	PyTrack_prefix.h#include "mwerks_shared_config.h"//#include <MacHeaders.h>#include <MacTypes.h>#include <Resources.h>#define	PYTRACK_STANDALONE		1#define	PYTRACK_SHUFFLER		0//	Parser extension switcher#define	FIDOTECH_ATOMS

@@ -1,0 +1,1 @@
+//	¥	guicode.h#include "Python.h"int	doSimpleListDlg(PyObject *py_list);

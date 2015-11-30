@@ -1,0 +1,1 @@
+//	¥	plug_control_dummy.hPlugsControl *create_plug_control();
