@@ -11,4 +11,4 @@ build
 *.xcuserdatad
 *.xcworkspace
 .DS_Store
-
+._.DS_Store
